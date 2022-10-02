@@ -1,9 +1,14 @@
 import './App.css';
+import Notification from './components/Notification';
+import NotificationsHeader from './components/NotificationsHeader';
 
 function App() {
   return (
     <div className="App">
-      <h1>App Works</h1>
+      <NotificationsHeader />
+      <div class="notifications">
+        <Notification />
+      </div>
     </div>
   );
 }
