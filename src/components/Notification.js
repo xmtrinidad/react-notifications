@@ -1,14 +1,14 @@
 // import { useState } from 'react'
 
-const Notification = () => {
-
+const Notification = (props) => {
+  const classes = `notification ${props.isUnread ? 'unread' : ''}`
   return (
-    <div className="notification">
+    <div className={classes}>
       <div className="col avatar">
-        <img src="https://i.pravatar.cc/300" alt="" />
+        <img src={props.avatar} alt="" />
       </div>
       <div className="col notification-msg">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ea voluptatibus obcaecati pariatur tempore repellendus voluptas odit, dolorem ipsa numquam.</p>
+        <p>{props.message}</p>
       </div>
     </div>
   )

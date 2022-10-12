@@ -1,6 +1,10 @@
-// import { useState } from 'react'
+// import { useState } from 'react';
 
-const NotificationsHeader = () => {
+const NotificationsHeader = (props) => {
+
+  const onMarkAsRead = (e) => {
+    props.onClick();
+  }
 
   return (
     <header className="notifications-header">
@@ -8,8 +12,8 @@ const NotificationsHeader = () => {
         <h2>Notifications</h2>
         <span>4</span>
       </div>
-      <div class="col mark-as-read">
-        <button className="mark-as-read-btn">Mark all as read</button>
+      <div className="col mark-as-read">
+        <button onClick={(onMarkAsRead)} className="mark-as-read-btn">Mark all as read</button>
       </div>
     </header>
   )

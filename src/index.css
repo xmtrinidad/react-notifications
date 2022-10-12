@@ -60,6 +60,16 @@ body {
 .notification {
   display: flex;
   gap: 16px;
+  padding: 12px;
+  border-radius: 6px;
+}
+
+.notification p {
+  margin: 0;
+}
+
+.notification.unread {
+  background-color: #f6fafd;
 }
 
 .notification .col {
