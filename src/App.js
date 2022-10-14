@@ -2,12 +2,13 @@ import './App.css';
 import { useState } from 'react';
 import Notification from './components/Notification';
 import NotificationsHeader from './components/NotificationsHeader';
+import NewNotification from './components/NewNotification';
 
 function App() {
   const [notificationData, setNotificationData] = useState([
     { id: 1, avatar: 'https://i.pravatar.cc/300', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ea voluptatibus obcaecati pariatur tempore repellendus voluptas odit, dolorem ipsa numquam.', isUnread: true},
     { id: 2, avatar: 'https://i.pravatar.cc/300', message: 'meme message', isUnread: false},
-    { id: 3, avatar: 'https://i.pravatar.cc/300', message: 'lol ok', isUnread: false},
+    { id: 3, avatar: 'https://i.pravatar.cc/300', message: 'lol ok', isUnread: true},
   ]);
 
   const handleMarkAsRead = () => {
@@ -28,6 +29,7 @@ function App() {
       <div className="notifications">
         {notifications}
       </div>
+      <NewNotification></NewNotification>
     </div>
   );
 }
