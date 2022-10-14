@@ -1,10 +1,18 @@
 import NotifcationForm from "./NotificationForm";
 
-const NewNotification = () => {
+const NewNotification = (props) => {
+
+  const saveNotificationDataHandler = (enteredNotificationData) => {
+    const notificationData = {
+      ...enteredNotificationData,
+      id: Math.random().toString()
+    };
+    props.onAddNotification(notificationData);
+  };
 
   return (
     <div className="new-notification">
-      <NotifcationForm></NotifcationForm>
+      <NotifcationForm onSaveExpenseData={saveNotificationDataHandler}></NotifcationForm>
     </div>
   );
 };

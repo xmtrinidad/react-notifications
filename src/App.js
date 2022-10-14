@@ -11,25 +11,28 @@ function App() {
     { id: 3, avatar: 'https://i.pravatar.cc/300', message: 'lol ok', isUnread: true},
   ]);
 
-  const handleMarkAsRead = () => {
-    const dataCopy = [...notificationData];
-    dataCopy.forEach(item => item.isUnread = false);
-    setNotificationData(dataCopy);
+  const addNotificationHandler = (notification) => {
+    setNotificationData((prevState) => {
+      return [...prevState, notification];
+    });
   };
 
-  const handleTestThing = () => {
-    console.log('test thing works');
+  const handleMarkAsRead = () => {
+    setNotificationData((prevState) => {
+      prevState.forEach(n => n.isUnread = false)
+      return [...prevState];
+    });
   };
 
   const notifications = notificationData.map((notification) => <Notification key={notification.id} avatar={notification.avatar} message={notification.message} isUnread={notification.isUnread} />);
 
   return (
     <div className="App">
-      <NotificationsHeader onTestThing={handleTestThing} onMarkAsRead={handleMarkAsRead} />
+      <NotificationsHeader onMarkAsRead={handleMarkAsRead} />
       <div className="notifications">
         {notifications}
       </div>
-      <NewNotification></NewNotification>
+      <NewNotification onAddNotification={addNotificationHandler}></NewNotification>
     </div>
   );
 }
