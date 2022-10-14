@@ -6,8 +6,8 @@ const NotificationsHeader = (props) => {
     props.onMarkAsRead();
   };
 
-  const onTestThing = (e) => {
-    props.onTestThing();
+  const displayChangeHandler = (e) => {
+    props.onDisplayChange(e.target.value)
   };
 
   return (
@@ -18,7 +18,15 @@ const NotificationsHeader = (props) => {
       </div>
       <div className="col mark-as-read">
         <button onClick={onMarkAsRead} className="mark-as-read-btn">Mark all as read</button>
-        <button onClick={onTestThing}>Test thing</button>
+        <div className="display-dropdown">
+          <label htmlFor="display-dropdown">Display: </label>
+          <select onChange={displayChangeHandler} name="display" id="display-dropdown">
+            <option value="all">All</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
       </div>
     </header>
   )

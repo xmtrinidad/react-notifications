@@ -4,12 +4,17 @@ import Notification from './components/Notification';
 import NotificationsHeader from './components/NotificationsHeader';
 import NewNotification from './components/NewNotification';
 
+const MOCK_DATA = [
+  { id: 1, avatar: 'https://i.pravatar.cc/300', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ea voluptatibus obcaecati pariatur tempore repellendus voluptas odit, dolorem ipsa numquam.', isUnread: true},
+  { id: 2, avatar: 'https://i.pravatar.cc/300', message: 'meme message', isUnread: false},
+  { id: 3, avatar: 'https://i.pravatar.cc/300', message: 'lol ok', isUnread: true},
+];
+
+const DISPLAY = 'all';
+
 function App() {
-  const [notificationData, setNotificationData] = useState([
-    { id: 1, avatar: 'https://i.pravatar.cc/300', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ea voluptatibus obcaecati pariatur tempore repellendus voluptas odit, dolorem ipsa numquam.', isUnread: true},
-    { id: 2, avatar: 'https://i.pravatar.cc/300', message: 'meme message', isUnread: false},
-    { id: 3, avatar: 'https://i.pravatar.cc/300', message: 'lol ok', isUnread: true},
-  ]);
+  const [notificationData, setNotificationData] = useState(MOCK_DATA);
+  const [notificationDisplay, setDisplay] = useState(DISPLAY);
 
   const addNotificationHandler = (notification) => {
     setNotificationData((prevState) => {
@@ -24,11 +29,19 @@ function App() {
     });
   };
 
-  const notifications = notificationData.map((notification) => <Notification key={notification.id} avatar={notification.avatar} message={notification.message} isUnread={notification.isUnread} />);
+  const handleDisplayChange = (displayNumber) => {
+    setDisplay(displayNumber);
+  };
+
+  const notifications = notificationData.map((notification, i) =>
+   notificationDisplay === 'all' ? 
+    <Notification key={notification.id} avatar={notification.avatar} message={notification.message} isUnread={notification.isUnread} /> : 
+    i < notificationDisplay ? 
+    <Notification key={notification.id} avatar={notification.avatar} message={notification.message} isUnread={notification.isUnread} /> : '');
 
   return (
     <div className="App">
-      <NotificationsHeader onMarkAsRead={handleMarkAsRead} />
+      <NotificationsHeader onDisplayChange={handleDisplayChange} onMarkAsRead={handleMarkAsRead} />
       <div className="notifications">
         {notifications}
       </div>
