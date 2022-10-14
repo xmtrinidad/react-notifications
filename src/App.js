@@ -16,11 +16,15 @@ function App() {
     setNotificationData(dataCopy);
   };
 
+  const handleTestThing = () => {
+    console.log('test thing works');
+  };
+
   const notifications = notificationData.map((notification) => <Notification key={notification.id} avatar={notification.avatar} message={notification.message} isUnread={notification.isUnread} />);
 
   return (
     <div className="App">
-      <NotificationsHeader onClick={handleMarkAsRead} />
+      <NotificationsHeader onTestThing={handleTestThing} onMarkAsRead={handleMarkAsRead} />
       <div className="notifications">
         {notifications}
       </div>

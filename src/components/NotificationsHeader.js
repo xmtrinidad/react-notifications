@@ -3,8 +3,12 @@
 const NotificationsHeader = (props) => {
 
   const onMarkAsRead = (e) => {
-    props.onClick();
-  }
+    props.onMarkAsRead();
+  };
+
+  const onTestThing = (e) => {
+    props.onTestThing();
+  };
 
   return (
     <header className="notifications-header">
@@ -13,7 +17,8 @@ const NotificationsHeader = (props) => {
         <span>4</span>
       </div>
       <div className="col mark-as-read">
-        <button onClick={(onMarkAsRead)} className="mark-as-read-btn">Mark all as read</button>
+        <button onClick={onMarkAsRead} className="mark-as-read-btn">Mark all as read</button>
+        <button onClick={onTestThing}>Test thing</button>
       </div>
     </header>
   )
