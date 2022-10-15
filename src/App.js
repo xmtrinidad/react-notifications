@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Notification from './components/Notification';
 import NotificationsHeader from './components/NotificationsHeader';
 import NewNotification from './components/NewNotification';
+import AppModal from './components/AppModal'
 
 const MOCK_DATA = [
   { id: 1, avatar: 'https://i.pravatar.cc/300', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ea voluptatibus obcaecati pariatur tempore repellendus voluptas odit, dolorem ipsa numquam.', isUnread: true},
@@ -15,11 +16,14 @@ const DISPLAY = 'all';
 function App() {
   const [notificationData, setNotificationData] = useState(MOCK_DATA);
   const [notificationDisplay, setDisplay] = useState(DISPLAY);
+  const [isModalActive, setModalActive] = useState(false);
 
   const addNotificationHandler = (notification) => {
     setNotificationData((prevState) => {
       return [...prevState, notification];
     });
+
+    setModalActive(true);
   };
 
   const handleMarkAsRead = () => {
@@ -31,6 +35,10 @@ function App() {
 
   const handleDisplayChange = (displayNumber) => {
     setDisplay(displayNumber);
+  };
+
+  const closeModal = () => {
+    setModalActive(false);
   };
 
   const notifications = notificationData.map((notification, i) =>
@@ -46,6 +54,7 @@ function App() {
         {notifications}
       </div>
       <NewNotification onAddNotification={addNotificationHandler}></NewNotification>
+      <AppModal onModalClose={closeModal} modalActive={isModalActive} />
     </div>
   );
 }

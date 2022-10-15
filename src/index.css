@@ -153,3 +153,22 @@ body {
 .notification-form__actions {
   text-align: right;
 }
+
+/* App Modal */
+
+.app-modal {
+  border: 2px solid red;
+  position: absolute;
+  width: 80%;
+  height: 200px;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.app-modal.active {
+  display: flex;
+}
