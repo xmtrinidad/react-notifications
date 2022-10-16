@@ -1,4 +1,3 @@
-
 const AppModal = (props) => {
 
   const handleModalClose = () => {

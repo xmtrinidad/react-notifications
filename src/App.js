@@ -1,4 +1,5 @@
 import './App.css';
+import ReactDOM from "react-dom";
 import { useState } from 'react';
 import Notification from './components/Notification';
 import NotificationsHeader from './components/NotificationsHeader';
@@ -54,7 +55,7 @@ function App() {
         {notifications}
       </div>
       <NewNotification onAddNotification={addNotificationHandler}></NewNotification>
-      <AppModal onModalClose={closeModal} modalActive={isModalActive} />
+      {ReactDOM.createPortal(<AppModal onModalClose={closeModal} modalActive={isModalActive} />, document.querySelector('#modals'))}
     </div>
   );
 }
