@@ -5,6 +5,7 @@ import Notification from './components/Notification';
 import NotificationsHeader from './components/NotificationsHeader';
 import NewNotification from './components/NewNotification';
 import AppModal from './components/AppModal'
+import UserForm from './components/UserForm/UserForm';
 
 const MOCK_DATA = [
   { id: 1, avatar: 'https://i.pravatar.cc/300', message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ea voluptatibus obcaecati pariatur tempore repellendus voluptas odit, dolorem ipsa numquam.', isUnread: true},
@@ -38,6 +39,10 @@ function App() {
     setDisplay(displayNumber);
   };
 
+  const handleUserSubmit = (user) => {
+    console.log(user);
+  };
+
   const closeModal = () => {
     setModalActive(false);
   };
@@ -49,14 +54,20 @@ function App() {
     <Notification key={notification.id} avatar={notification.avatar} message={notification.message} isUnread={notification.isUnread} /> : '');
 
   return (
-    <div className="App">
-      <NotificationsHeader onDisplayChange={handleDisplayChange} onMarkAsRead={handleMarkAsRead} />
-      <div className="notifications">
-        {notifications}
+    <>
+      <div className="App">
+        <NotificationsHeader onDisplayChange={handleDisplayChange} onMarkAsRead={handleMarkAsRead} />
+        <div className="notifications">
+          {notifications}
+        </div>
+        <NewNotification onAddNotification={addNotificationHandler}></NewNotification>
+        {ReactDOM.createPortal(<AppModal onModalClose={closeModal} modalActive={isModalActive} />, document.querySelector('#modals'))}
       </div>
-      <NewNotification onAddNotification={addNotificationHandler}></NewNotification>
-      {ReactDOM.createPortal(<AppModal onModalClose={closeModal} modalActive={isModalActive} />, document.querySelector('#modals'))}
-    </div>
+
+      <div className="example-container">
+        <UserForm submitUser={handleUserSubmit} />
+      </div>
+    </>
   );
 }
 
