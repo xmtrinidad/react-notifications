@@ -14,6 +14,14 @@ const UserForm = (props) => {
     };
 
     props.submitUser(user);
+
+    resetInputRefs();
+  }
+
+  const resetInputRefs = () => {
+    firstNameInputRef.current.value = '';
+    lastNameInputRef.current.value = '';
+    userNameInputRef.current.value = '';
   }
   
   return (
